@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Misi Koka: Ekspedisi Pabrik Data Kota Siber</title>
+  
+  <!-- Tailwind CSS Framework CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome untuk Ikon Perangkat -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            siberBg: '#050814',
+            siberPanel: '#0f172a',
+            siberCard: '#1e293b',
+            siberCyan: '#06b6d4',
+            siberGreen: '#10b981',
+            siberAmber: '#f59e0b',
+            siberRose: '#f43f5e',
+            siberViolet: '#8b5cf6',
+            siberBlue: '#3b82f6'
+          },
+          animation: {
+            'glow-pulse': 'glowPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float-koka': 'floatKoka 3s ease-in-out infinite',
+            'radar-spin': 'radarSpin 4s linear infinite',
+            'bus-slide': 'busSlide 1s linear infinite'
+          },
+          keyframes: {
+            glowPulse: {
+              '0%, 100%': { filter: 'drop-shadow(0 0 15px rgba(6, 182, 212, 0.7))' },
+              '50%': { filter: 'drop-shadow(0 0 4px rgba(6, 182, 212, 0.2))' }
+            },
+            floatKoka: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' }
+            },
+            radarSpin: {
+              'from': { transform: 'rotate(0deg)' },
+              'to': { transform: 'rotate(360deg)' }
+            },
+            busSlide: {
+              '0%': { backgroundPosition: '0 0' },
+              '100%': { backgroundPosition: '40px 0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700;800&family=Fredoka:wght@400;600;700&family=Nunito:wght@600;800;900&display=swap');
+    
+    :root {
+      --neon-cyan: #06b6d4;
+      --neon-emerald: #10b981;
+      --neon-amber: #f59e0b;
+      --neon-rose: #f43f5e;
+      --neon-violet: #8b5cf6;
+    }
+
+    body {
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+      user-select: none;
+      background-color: #050814;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.15), transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
+      overflow-x: hidden;
+    }
+
+    .font-tech {
+      font-family: 'Chakra Petch', monospace, sans-serif;
+    }
+
+    /* Glow utility classes */
+    .glow-cyan-box {
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.35), inset 0 0 15px rgba(6, 182, 212, 0.15);
+      border-color: #22d3ee !important;
+    }
+    .glow-green-box {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4), inset 0 0 15px rgba(16, 185, 129, 0.15);
+      border-color: #34d399 !important;
+    }
+    .glow-amber-box {
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.45), inset 0 0 15px rgba(245, 158, 11, 0.15);
+      border-color: #fbbf24 !important;
+    }
+    .glow-rose-box {
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.4), inset 0 0 15px rgba(244, 63, 94, 0.15);
+      border-color: #fb7185 !important;
+    }
+
+    /* SVG Circuit Cable Styling */
+    .wire-glow {
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    .wire-active {
+      stroke-dasharray: 10, 6;
+      animation: wireDash 0.8s linear infinite;
+    }
+    @keyframes wireDash {
+      to {
+        stroke-dashoffset: -32;
+      }
+    }
+
+    /* Animated Paper Output Mechanism */
+    @keyframes paperEject {
+      0% { transform: translateY(-40px); opacity: 0; }
+      40% { transform: translateY(-10px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .paper-slide-down {
+      animation: paperEject 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    /* Sound speaker pulse */
+    @keyframes subwooferPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    .speaker-beating {
+      animation: subwooferPulse 0.45s ease-in-out infinite;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+  </style>
+</head>
+
+<body class="text-slate-100 min-h-screen flex flex-col justify-between p-2 sm:p-4 md:p-5 relative select-none">
+
+  <!-- TOP BAR: HEADER, GILIRAN KELOMPOK, TIMER, FULLSCREEN, SOUND -->
+  <header class="bg-slate-900/90 border border-slate-800 rounded-3xl p-3 sm:p-4 shadow-2xl mb-3 backdrop-blur-md relative overflow-hidden">
+    <!-- Top ambient line -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-indigo-500 to-amber-500"></div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <!-- Title & Branding -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-500 p-0.5 shadow-lg shadow-cyan-500/30 flex items-center justify-center animate-glow-pulse">
+          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-2xl">
+            🤖
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg sm:text-xl md:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-200 font-tech">
+              MISI KOKA: EKSPEDISI PABRIK DATA
+            </h1>
+            <span class="hidden sm:inline-flex items-center gap-1 text-[10px] bg-cyan-950/80 text-cyan-300 border border-cyan-700/60 font-mono px-2 py-0.5 rounded-full font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+              EDISI ESTAFET KELAS 5D
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 font-medium">
+            Simulasi Logika Perangkat Keras & Lunak Komputer: <span class="text-cyan-400 font-bold">Masukan</span> ➔ <span class="text-indigo-400 font-bold">CPU & Aplikasi</span> ➔ <span class="text-emerald-400 font-bold">Luaran</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Control Bar Actions -->
+      <div class="flex items-center gap-2 flex-wrap ml-auto">
+        
+        <!-- Pilihan Kelompok Aktif Dropdown -->
+        <div class="bg-slate-800/90 px-3 py-1.5 rounded-2xl border border-slate-700/80 flex items-center gap-2 shadow-inner">
+          <span class="text-xs text-slate-400 font-tech font-bold uppercase">Giliran:</span>
+          <select id="groupSelect" class="bg-slate-950 text-amber-400 font-black text-xs md:text-sm rounded-xl px-2.5 py-1 outline-none border border-slate-700 cursor-pointer transition hover:border-amber-400">
+            <option value="1">Kelompok 1 (Tim Alfa)</option>
+            <option value="2">Kelompok 2 (Tim Beta)</option>
+            <option value="3">Kelompok 3 (Tim Gamma)</option>
+            <option value="4">Kelompok 4 (Tim Delta)</option>
+            <option value="5">Kelompok 5 (Tim Epsilon)</option>
+            <option value="6">Kelompok 6 (Tim Omega)</option>
+          </select>
+        </div>
+
+        <!-- Tombol Roda Putar Siber -->
+        <button onclick="openSpinModal()" class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs px-3.5 py-2 rounded-2xl shadow-lg shadow-amber-500/20 border border-amber-300 flex items-center gap-2 transition active:scale-95">
+          <span class="text-sm">🎡</span>
+          <span class="font-tech tracking-wide uppercase">Undi Giliran</span>
+          <span id="spinBadgeRemaining" class="bg-slate-950 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold">
+            6 Sisa
+          </span>
+        </button>
+
+        <!-- Timer 30 Detik Estafet -->
+        <div class="flex items-center gap-2 bg-slate-800/90 px-3 py-1.5 rounded-2xl border border-slate-700/80 shadow-inner">
+          <span class="text-xs text-slate-400 font-tech font-bold">WAKTU:</span>
+          <div id="timerDisplay" class="text-xl font-black text-rose-400 w-12 text-center tracking-wider font-tech">
+            30s
+          </div>
+          <button id="btnToggleTimer" onclick="toggleTimer()" class="bg-cyan-600 hover:bg-cyan-500 text-xs px-2.5 py-1 rounded-xl font-bold transition active:scale-95 shadow">
+            Mulai
+          </button>
+          <button onclick="resetTimer()" title="Setel Ulang Waktu" class="bg-slate-700 hover:bg-slate-600 text-xs px-2 py-1 rounded-xl font-bold transition active:scale-95">
+            ↺
+          </button>
+        </div>
+
+        <!-- Perolehan Bintang Tim Terpilih -->
+        <div class="flex items-center gap-1.5 bg-slate-800/90 px-3 py-1.5 rounded-2xl border border-slate-700/80 shadow-inner">
+          <span class="text-amber-400 text-base">⭐</span>
+          <span id="scoreDisplay" class="text-lg font-black text-amber-300 font-tech">0</span>
+        </div>
+
+        <!-- Tombol Audio Mute/Unmute & Fullscreen -->
+        <div class="flex items-center gap-1 bg-slate-800/80 p-1 rounded-2xl border border-slate-700">
+          <button id="btnAudioToggle" onclick="toggleAudio()" title="Aktif/Nonaktifkan Suara" class="w-8 h-8 rounded-xl bg-slate-900 hover:bg-slate-700 text-cyan-400 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <button onclick="openStrategyModal()" title="Buka Kartu Diskusi Meja" class="w-8 h-8 rounded-xl bg-slate-900 hover:bg-slate-700 text-amber-400 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-table-list"></i>
+          </button>
+          <button onclick="toggleFullscreen()" title="Layar Penuh Proyektor" class="w-8 h-8 rounded-xl bg-slate-900 hover:bg-slate-700 text-emerald-400 flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-expand"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER TANTANGAN INVESTIGASI (KASUS NYATA & MASALAH KONTEKSTUAL) -->
+  <div class="bg-gradient-to-r from-slate-900 via-slate-900/95 to-indigo-950/80 border border-slate-800 rounded-3xl p-4 mb-3 shadow-xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 relative overflow-hidden">
+    
+    <!-- Cyber decoration accent -->
+    <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="flex items-start md:items-center gap-3 z-10 flex-1">
+      <div id="levelBadge" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 text-xs font-black px-4 py-2.5 rounded-2xl uppercase tracking-wider shadow-lg shadow-cyan-500/20 font-tech whitespace-nowrap">
+        KASUS 1 (KELOMPOK 1)
+      </div>
+      <div>
+        <div class="text-[11px] font-bold text-cyan-400 uppercase tracking-widest font-tech flex items-center gap-2">
+          <span>🎯 TARGET ANALISIS SISTEM:</span>
+          <span id="levelSubTitle" class="text-slate-300 font-normal">Penyusunan Naskah & Tampilan Layar</span>
+        </div>
+        <p id="missionText" class="text-sm md:text-base font-bold text-slate-100 leading-snug mt-0.5">
+          Memuat instruksi tantangan investigasi...
+        </p>
+      </div>
+    </div>
+
+    <!-- Tombol Seleksi Cepat Kasus 1-6 (Khusus Guru / Rotasi) -->
+    <div class="flex items-center gap-1.5 flex-wrap justify-end z-10">
+      <span class="text-[10px] text-slate-400 font-tech mr-1">KASUS:</span>
+      <button onclick="changeLevel(1)" id="btnLvl1" class="px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-cyan-400 bg-cyan-500/20 text-cyan-200 transition">K1</button>
+      <button onclick="changeLevel(2)" id="btnLvl2" class="px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-slate-700 bg-slate-800 text-slate-400 hover:border-cyan-400 transition">K2</button>
+      <button onclick="changeLevel(3)" id="btnLvl3" class="px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-slate-700 bg-slate-800 text-slate-400 hover:border-cyan-400 transition">K3</button>
+      <button onclick="changeLevel(4)" id="btnLvl4" class="px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-slate-700 bg-slate-800 text-slate-400 hover:border-cyan-400 transition">K4</button>
+      <button onclick="changeLevel(5)" id="btnLvl5" class="px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-slate-700 bg-slate-800 text-slate-400 hover:border-cyan-400 transition">K5</button>
+      <button onclick="changeLevel(6)" id="btnLvl6" class="px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-slate-700 bg-slate-800 text-slate-400 hover:border-cyan-400 transition">K6</button>
+      <button onclick="resetCurrentMission()" class="ml-2 px-3.5 py-1.5 text-xs font-tech font-bold rounded-xl bg-rose-600/80 hover:bg-rose-500 text-white transition shadow active:scale-95">
+        <i class="fa-solid fa-arrow-rotate-left mr-1"></i>Reset
+      </button>
+    </div>
+  </div>
+
+  <!-- PANDUAN KOLABORASI 5 PERAN TEKNISI CILIK KELOMPOK -->
+  <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl px-4 py-2.5 mb-3 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2 backdrop-blur">
+    <div class="font-bold text-amber-400 flex items-center gap-1.5 font-tech text-xs">
+      <i class="fa-solid fa-users-gear text-amber-400"></i>
+      PANDUAN PERAN MEJA TIM:
+    </div>
+    <div class="flex items-center gap-2 md:gap-5 flex-wrap font-medium text-[11px]">
+      <span class="bg-slate-800/80 px-2 py-0.5 rounded-lg border border-cyan-800/40 text-cyan-300">
+        <strong class="text-cyan-400">1. Analis Masalah:</strong> Pahami Kebutuhan
+      </span>
+      <span class="bg-slate-800/80 px-2 py-0.5 rounded-lg border border-sky-800/40 text-sky-300">
+        <strong class="text-sky-400">2. Arsitek Masukan:</strong> Tentukan Input
+      </span>
+      <span class="bg-slate-800/80 px-2 py-0.5 rounded-lg border border-indigo-800/40 text-indigo-300">
+        <strong class="text-indigo-400">3. Arsitek Proses:</strong> Pilih Software CPU
+      </span>
+      <span class="bg-slate-800/80 px-2 py-0.5 rounded-lg border border-emerald-800/40 text-emerald-300">
+        <strong class="text-emerald-400">4. Teknisi Luaran:</strong> Pilih Output
+      </span>
+      <span class="bg-slate-800/80 px-2 py-0.5 rounded-lg border border-amber-800/40 text-amber-300">
+        <strong class="text-amber-400">5. Eksekutor Layar:</strong> Klik Sambungan
+      </span>
+    </div>
+  </div>
+
+  <!-- ARENA UTAMA SIMULASI 3 ZONA (MASUKAN -> CPU & SOFTWARE -> LUARAN) -->
+  <main id="mainGameStage" class="relative bg-slate-900/80 border-2 border-slate-800 rounded-3xl p-4 md:p-6 shadow-2xl flex-1 flex flex-col justify-center min-h-[500px] overflow-hidden">
+    
+    <!-- Kanvas SVG Jalur Kabel Dinamis & Partikel Sinyal Cahaya -->
+    <svg id="wireCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-10">
+      <defs>
+        <!-- Filter Cahaya Kabel -->
+        <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        
+        <!-- Gradient Kabel Masukan -->
+        <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#22d3ee" />
+          <stop offset="100%" stop-color="#38bdf8" />
+        </linearGradient>
+
+        <!-- Gradient Kabel Luaran -->
+        <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#34d399" />
+          <stop offset="100%" stop-color="#10b981" />
+        </linearGradient>
+      </defs>
+
+      <!-- Path Kabel Masukan ke CPU -->
+      <path id="wireIn" d="" stroke="#1e293b" stroke-width="5" fill="none" stroke-linecap="round" />
+      
+      <!-- Path Kabel CPU ke Luaran 1 dan Luaran 2 -->
+      <path id="wireOut1" d="" stroke="#1e293b" stroke-width="5" fill="none" stroke-linecap="round" />
+      <path id="wireOut2" d="" stroke="#1e293b" stroke-width="5" fill="none" stroke-linecap="round" />
+
+      <!-- Luminous Flying Data Packets (Orbs) -->
+      <circle id="packetIn" r="6" fill="#67e8f9" filter="url(#glowEffect)" opacity="0"></circle>
+      <circle id="packetOut1" r="6" fill="#6ee7b7" filter="url(#glowEffect)" opacity="0"></circle>
+      <circle id="packetOut2" r="6" fill="#6ee7b7" filter="url(#glowEffect)" opacity="0"></circle>
+    </svg>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 relative z-20 items-stretch">
+      
+      <!-- ================= ZONA 1: GERBANG MASUKAN (INPUT) ================= -->
+      <section class="lg:col-span-3 bg-slate-950/80 border-2 border-slate-800 rounded-3xl p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800/80 mb-3">
+            <span class="text-xs font-black text-cyan-400 tracking-wider flex items-center gap-2 uppercase font-tech">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+              1. GERBANG MASUKAN
+            </span>
+            <span class="text-[10px] bg-cyan-950/80 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-lg font-mono font-bold">
+              INPUT
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-3 leading-snug">
+            Pilih perangkat masukan manusia untuk mengawali sinyal instruksi:
+          </p>
+
+          <div class="space-y-2.5">
+            <!-- 1. Papan Ketik (Keyboard) -->
+            <button id="dev_keyboard" onclick="selectInputDevice('keyboard')" class="device-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex items-center gap-3 transition-all duration-200 transform active:scale-95 text-left relative overflow-hidden">
+              <div class="w-11 h-11 rounded-xl bg-cyan-950/50 border border-cyan-700/50 flex items-center justify-center text-xl text-cyan-300 shadow group-hover:bg-cyan-500 group-hover:text-slate-950 transition duration-300">
+                <i class="fa-regular fa-keyboard"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-cyan-300 flex items-center justify-between">
+                  <span>Papan Ketik</span>
+                  <span class="text-[9px] font-mono text-slate-500">KEYBOARD</span>
+                </div>
+                <div class="text-[10px] text-slate-400">Mengetik simbol, teks & abjad</div>
+              </div>
+            </button>
+
+            <!-- 2. Tetikus (Mouse) -->
+            <button id="dev_mouse" onclick="selectInputDevice('mouse')" class="device-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex items-center gap-3 transition-all duration-200 transform active:scale-95 text-left relative overflow-hidden">
+              <div class="w-11 h-11 rounded-xl bg-cyan-950/50 border border-cyan-700/50 flex items-center justify-center text-xl text-cyan-300 shadow group-hover:bg-cyan-500 group-hover:text-slate-950 transition duration-300">
+                <i class="fa-solid fa-arrow-pointer"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-cyan-300 flex items-center justify-between">
+                  <span>Tetikus</span>
+                  <span class="text-[9px] font-mono text-slate-500">MOUSE</span>
+                </div>
+                <div class="text-[10px] text-slate-400">Mengklik tombol kursor & seret objek</div>
+              </div>
+            </button>
+
+            <!-- 3. Mikrofon (Microphone) -->
+            <button id="dev_mic" onclick="selectInputDevice('mic')" class="device-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex items-center gap-3 transition-all duration-200 transform active:scale-95 text-left relative overflow-hidden">
+              <div class="w-11 h-11 rounded-xl bg-cyan-950/50 border border-cyan-700/50 flex items-center justify-center text-xl text-cyan-300 shadow group-hover:bg-cyan-500 group-hover:text-slate-950 transition duration-300">
+                <i class="fa-solid fa-microphone-lines"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-cyan-300 flex items-center justify-between">
+                  <span>Mikrofon</span>
+                  <span class="text-[9px] font-mono text-slate-500">MIC SENSOR</span>
+                </div>
+                <div class="text-[10px] text-slate-400">Menangkap gelombang suara vokal</div>
+              </div>
+            </button>
+
+            <!-- 4. Kamera Digital (Webcam/Sensor) -->
+            <button id="dev_camera" onclick="selectInputDevice('camera')" class="device-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex items-center gap-3 transition-all duration-200 transform active:scale-95 text-left relative overflow-hidden">
+              <div class="w-11 h-11 rounded-xl bg-cyan-950/50 border border-cyan-700/50 flex items-center justify-center text-xl text-cyan-300 shadow group-hover:bg-cyan-500 group-hover:text-slate-950 transition duration-300">
+                <i class="fa-solid fa-camera"></i>
+              </div>
+              <div class="flex-1">
+                <div class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-cyan-300 flex items-center justify-between">
+                  <span>Kamera Digital</span>
+                  <span class="text-[9px] font-mono text-slate-500">OPTICAL</span>
+                </div>
+                <div class="text-[10px] text-slate-400">Menangkap gambar optik foto visual</div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tombol Eksperimen Bypass (Konsep Pedagogis: Kenapa Komputer Tidak Bisa Langsung Cetak?) -->
+        <button onclick="triggerBypassError()" class="mt-4 p-2.5 bg-rose-950/30 border border-rose-700/50 hover:bg-rose-900/40 rounded-2xl text-center text-rose-300 text-[10px] transition font-tech active:scale-95">
+          <i class="fa-solid fa-triangle-exclamation mr-1 text-rose-400"></i>
+          Uji Coba: Sambung Langsung ke Printer Tanpa CPU?
+        </button>
+      </section>
+
+      <!-- ================= ZONA 2: MESIN PROSES (CPU & SOFTWARE) ================= -->
+      <section class="lg:col-span-6 bg-slate-950/80 border-2 border-slate-800 rounded-3xl p-4 flex flex-col justify-between items-center relative shadow-2xl backdrop-blur-md">
+        <div class="w-full">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800/80 mb-3">
+            <span class="text-xs font-black text-indigo-400 tracking-wider flex items-center gap-2 uppercase font-tech">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-ping"></span>
+              2. MESIN PROSES (OTAK KOMPUTER)
+            </span>
+            <span class="text-[10px] bg-indigo-950/80 text-indigo-300 border border-indigo-800 px-2 py-0.5 rounded-lg font-mono font-bold">
+              CPU & SOFTWARE
+            </span>
+          </div>
+
+          <!-- KOTAK MESIN CPU FISIK DENGAN INDIKATOR BUS DATA -->
+          <div id="cpuBox" class="relative mx-auto max-w-lg bg-gradient-to-b from-slate-900 to-slate-950 border-4 border-slate-800 rounded-3xl p-4 shadow-2xl transition duration-500 text-center overflow-hidden">
+            
+            <!-- Sirkuit Pin Header -->
+            <div class="flex justify-between items-center px-1 mb-2">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[9px] font-mono text-slate-500 font-bold mr-1">BUS:</span>
+                <div id="pin1" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition" title="Bus Masukan"></div>
+                <div id="pin2" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition" title="Bus Aplikasi"></div>
+                <div id="pin3" class="w-2.5 h-2.5 rounded-full bg-slate-700 transition" title="Bus Luaran"></div>
+              </div>
+              <span id="cpuStatusTag" class="text-[10px] font-tech uppercase bg-slate-950 px-3 py-0.5 rounded-full text-slate-400 border border-slate-800 font-bold">
+                MENUNGGU MASUKAN
+              </span>
+              <div class="flex items-center gap-1 text-[9px] font-mono text-emerald-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>ONLINE</span>
+              </div>
+            </div>
+
+            <!-- Visual Prosesor Chipset dengan Heatsink -->
+            <div class="py-2 relative">
+              <div class="inline-block px-6 py-3 rounded-2xl bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950 border-2 border-indigo-500/40 shadow-inner relative group">
+                <!-- Processor socket decorative dots -->
+                <div class="absolute -top-1.5 left-4 right-4 flex justify-between">
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                </div>
+                
+                <div class="text-xl sm:text-2xl md:text-3xl font-black tracking-widest text-indigo-200 flex items-center justify-center gap-3 font-tech">
+                  <i class="fa-solid fa-microchip text-indigo-400"></i>
+                  <span>CENTRAL PROCESSOR</span>
+                </div>
+                <div class="text-[10px] text-cyan-400 uppercase tracking-widest font-tech font-bold mt-0.5">
+                  UNIT PENGOLAH INSTRUKSI DATA SIBER
+                </div>
+
+                <div class="absolute -bottom-1.5 left-4 right-4 flex justify-between">
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                  <span class="w-1.5 h-1 bg-amber-400 rounded-full"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLOT RAK PERANGKAT LUNAK (SOFTWARE) DALAM CPU -->
+            <div class="mt-3 pt-3 border-t border-slate-800/80 text-left">
+              <div class="text-xs font-bold text-slate-300 mb-2 flex items-center justify-between font-tech">
+                <span class="text-slate-300">PILIH APLIKASI PEMROSES DATA:</span>
+                <span class="text-[10px] text-indigo-400 font-mono">SOFTWARE STACK</span>
+              </div>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <!-- 1. Google Docs -->
+                <button id="app_docs" onclick="selectSoftware('docs')" class="soft-btn group p-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 text-center transition transform active:scale-95">
+                  <div class="text-2xl mb-1 text-blue-400 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-file-lines"></i>
+                  </div>
+                  <div class="text-xs font-bold text-blue-300 font-tech">Google Docs</div>
+                  <div class="text-[9px] text-slate-400">Olah Kata & Naskah</div>
+                </button>
+
+                <!-- 2. YouTube -->
+                <button id="app_youtube" onclick="selectSoftware('youtube')" class="soft-btn group p-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 text-center transition transform active:scale-95">
+                  <div class="text-2xl mb-1 text-rose-500 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-youtube"></i>
+                  </div>
+                  <div class="text-xs font-bold text-rose-300 font-tech">YouTube</div>
+                  <div class="text-[9px] text-slate-400">Video & Musik Online</div>
+                </button>
+
+                <!-- 3. Canva / Studio Grafis -->
+                <button id="app_canva" onclick="selectSoftware('canva')" class="soft-btn group p-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 text-center transition transform active:scale-95">
+                  <div class="text-2xl mb-1 text-amber-400 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-palette"></i>
+                  </div>
+                  <div class="text-xs font-bold text-amber-300 font-tech">Canva / Paint</div>
+                  <div class="text-[9px] text-slate-400">Desain Poster & Foto</div>
+                </button>
+
+                <!-- 4. Studio Audio -->
+                <button id="app_recorder" onclick="selectSoftware('recorder')" class="soft-btn group p-2 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 text-center transition transform active:scale-95">
+                  <div class="text-2xl mb-1 text-purple-400 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-sliders"></i>
+                  </div>
+                  <div class="text-xs font-bold text-purple-300 font-tech">Studio Suara</div>
+                  <div class="text-[9px] text-slate-400">Olah Rekaman Vokal</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instruksi Langkah Berpikir -->
+        <div id="instructionHint" class="mt-3 text-xs text-center text-slate-300 bg-slate-950/90 px-4 py-2.5 rounded-2xl border border-slate-800 w-full shadow-inner">
+          💡 <span class="font-bold text-cyan-400">Langkah 1:</span> Diskusikan bersama tim meja, pilih perangkat masukan di sebelah kiri!
+        </div>
+      </section>
+
+      <!-- ================= ZONA 3: PANGGUNG LUARAN (OUTPUT) ================= -->
+      <section class="lg:col-span-3 bg-slate-950/80 border-2 border-slate-800 rounded-3xl p-4 flex flex-col justify-between shadow-2xl backdrop-blur-md">
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800/80 mb-3">
+            <span class="text-xs font-black text-emerald-400 tracking-wider flex items-center gap-2 uppercase font-tech">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+              3. PANGGUNG LUARAN
+            </span>
+            <span class="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-lg font-mono font-bold">
+              OUTPUT
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-2 leading-snug">
+            Tentukan perangkat luaran target (dapat dipilih lebih dari satu!):
+          </p>
+
+          <div class="space-y-3">
+            <!-- 1. Layar Monitor -->
+            <button id="out_monitor" onclick="selectOutputDevice('monitor')" class="out-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 hover:border-emerald-400 rounded-2xl transition text-left flex flex-col gap-1.5 active:scale-95">
+              <div class="flex items-center justify-between">
+                <span class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-emerald-300 flex items-center gap-2 font-tech">
+                  <i class="fa-solid fa-desktop text-emerald-400"></i> Layar Monitor
+                </span>
+                <span id="badge_monitor" class="text-[9px] px-2 py-0.2 rounded-md bg-slate-950 text-slate-500 font-mono font-bold border border-slate-800">
+                  STANDBY
+                </span>
+              </div>
+              <!-- Monitor Screen Display Box -->
+              <div id="screen_monitor" class="w-full h-12 bg-slate-950 rounded-xl border border-slate-800/90 flex items-center justify-center p-1 text-[10px] text-slate-500 font-mono text-center overflow-hidden transition-all duration-300">
+                <span>[Layar Kaca Gelap]</span>
+              </div>
+            </button>
+
+            <!-- 2. Mesin Cetak / Printer -->
+            <button id="out_printer" onclick="selectOutputDevice('printer')" class="out-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 hover:border-emerald-400 rounded-2xl transition text-left flex flex-col gap-1.5 active:scale-95">
+              <div class="flex items-center justify-between">
+                <span class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-emerald-300 flex items-center gap-2 font-tech">
+                  <i class="fa-solid fa-print text-amber-400"></i> Mesin Cetak
+                </span>
+                <span id="badge_printer" class="text-[9px] px-2 py-0.2 rounded-md bg-slate-950 text-slate-500 font-mono font-bold border border-slate-800">
+                  STANDBY
+                </span>
+              </div>
+              <!-- Printer Paper Eject Slot -->
+              <div id="paper_printer" class="w-full h-11 bg-slate-950 rounded-xl border border-slate-800/90 flex items-center justify-center p-1 text-[10px] text-slate-500 font-mono text-center overflow-hidden relative transition-all duration-300">
+                <span>[Baki Kertas Standby]</span>
+              </div>
+            </button>
+
+            <!-- 3. Pengeras Suara / Speaker -->
+            <button id="out_speaker" onclick="selectOutputDevice('speaker')" class="out-btn group w-full p-2.5 bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-800 hover:border-emerald-400 rounded-2xl transition text-left flex flex-col gap-1.5 active:scale-95">
+              <div class="flex items-center justify-between">
+                <span class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-emerald-300 flex items-center gap-2 font-tech">
+                  <i class="fa-solid fa-volume-high text-cyan-400"></i> Pengeras Suara
+                </span>
+                <span id="badge_speaker" class="text-[9px] px-2 py-0.2 rounded-md bg-slate-950 text-slate-500 font-mono font-bold border border-slate-800">
+                  STANDBY
+                </span>
+              </div>
+              <!-- Speaker Cone Box -->
+              <div id="sound_speaker" class="w-full h-8 bg-slate-950 rounded-xl border border-slate-800/90 flex items-center justify-center gap-1.5 transition-all duration-300">
+                <span class="w-2 h-2 rounded-full bg-slate-800"></span>
+                <span class="w-2 h-3.5 rounded-full bg-slate-800"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-800"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Nyalakan Alur Data -->
+        <button onclick="executeAction()" id="btnAction" class="mt-4 w-full py-3 px-3 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 hover:from-emerald-400 hover:to-teal-300 font-black text-slate-950 text-xs sm:text-sm shadow-xl shadow-emerald-500/20 transition active:scale-95 flex items-center justify-center gap-2 uppercase tracking-wider font-tech">
+          <i class="fa-solid fa-bolt-lightning text-slate-950"></i>
+          <span>Nyalakan Alur Data!</span>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- BAGIAN BAWAH: SI KOKA (DIALOG EDUKATIF) & KLASEMEN 6 KELOMPOK -->
+  <footer class="mt-3 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+    
+    <!-- Maskot Si Koka (Avatar SVG + Bubble Dialog) -->
+    <div class="lg:col-span-8 bg-slate-900/90 border border-slate-800 rounded-3xl p-3 sm:p-4 flex items-center gap-3 sm:gap-4 shadow-xl backdrop-blur-md">
+      
+      <!-- Avatar Koka SVG Animasi -->
+      <div id="kokaAvatar" class="w-14 h-14 sm:w-16 sm:h-16 shrink-0 bg-slate-950 rounded-2xl border-2 border-cyan-400 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/20 relative animate-float-koka transition duration-300">
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <!-- Antena Pemancar Robot -->
+          <line x1="50" y1="20" x2="50" y2="4" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+          <circle id="kokaAntennaLight" cx="50" cy="4" r="5" fill="#f59e0b" class="animate-ping"/>
+          <!-- Kepala Robot -->
+          <rect x="18" y="20" width="64" height="52" rx="16" fill="#0284c7" stroke="#38bdf8" stroke-width="3"/>
+          <!-- Layar Wajah -->
+          <rect x="26" y="28" width="48" height="36" rx="10" fill="#0b1120"/>
+          <!-- Mata Kiri & Kanan -->
+          <circle id="kokaEyeLeft" cx="39" cy="43" r="5.5" fill="#38bdf8"/>
+          <circle id="kokaEyeRight" cx="61" cy="43" r="5.5" fill="#38bdf8"/>
+          <!-- Mulut Ekspresi -->
+          <path id="kokaMouth" d="M 38 54 Q 50 62 62 54" stroke="#38bdf8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- Kerah Leher -->
+          <rect x="40" y="72" width="20" height="7" rx="3" fill="#0369a1"/>
+        </svg>
+      </div>
+
+      <!-- Bubble Dialog Koka -->
+      <div class="flex-1">
+        <div class="flex items-center gap-2 mb-0.5">
+          <span class="text-xs font-black text-cyan-400 uppercase tracking-wider font-tech flex items-center gap-1">
+            <i class="fa-solid fa-robot"></i> SI KOKA (PEMANDU PABRIK):
+          </span>
+          <span id="kokaMood" class="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.2 rounded-full font-bold">
+            Misi Siap
+          </span>
+        </div>
+        <p id="kokaSpeech" class="text-xs sm:text-sm text-slate-100 font-semibold leading-relaxed">
+          "Halo Teknisi Cilik Kelas 5D! Teliti baik-baik studi kasus meja kalian, diskusikan susunannya, lalu buktikan bahwa komputer tidak bisa bekerja sendiri tanpa instruksi masukan!"
+        </p>
+      </div>
+    </div>
+
+    <!-- Papan Pelacak Keikutsertaan 6 Kelompok (Semua Wajib Maju) -->
+    <div class="lg:col-span-4 bg-slate-900/90 border border-slate-800 rounded-3xl p-3 flex flex-col justify-between shadow-xl backdrop-blur-md">
+      <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex justify-between items-center font-tech">
+        <span>PARTISIPASI 6 TIM KELAS 5D:</span>
+        <div class="flex items-center gap-2">
+          <span id="roundProgressBadge" class="text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-md font-mono font-bold">
+            0/6 Maju
+          </span>
+          <button onclick="resetRoundTurns()" title="Setel Ulang Giliran" class="text-[10px] text-amber-400 hover:text-amber-300 font-bold">
+            <i class="fa-solid fa-rotate-left mr-0.5"></i>Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid 6 Kartu Kelompok -->
+      <div class="grid grid-cols-6 gap-1.5 text-center font-mono">
+        <div id="card_g1" onclick="selectGroupDirectly(1)" title="Pilih Kelompok 1" class="cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-amber-400">
+          <div class="text-[10px] text-slate-300 font-bold font-tech">K1</div>
+          <div id="star_g1" class="text-[11px] font-bold text-amber-300">0⭐</div>
+          <div id="badge_turn_1" class="text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold">Belum</div>
+        </div>
+        <div id="card_g2" onclick="selectGroupDirectly(2)" title="Pilih Kelompok 2" class="cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-amber-400">
+          <div class="text-[10px] text-slate-300 font-bold font-tech">K2</div>
+          <div id="star_g2" class="text-[11px] font-bold text-amber-300">0⭐</div>
+          <div id="badge_turn_2" class="text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold">Belum</div>
+        </div>
+        <div id="card_g3" onclick="selectGroupDirectly(3)" title="Pilih Kelompok 3" class="cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-amber-400">
+          <div class="text-[10px] text-slate-300 font-bold font-tech">K3</div>
+          <div id="star_g3" class="text-[11px] font-bold text-amber-300">0⭐</div>
+          <div id="badge_turn_3" class="text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold">Belum</div>
+        </div>
+        <div id="card_g4" onclick="selectGroupDirectly(4)" title="Pilih Kelompok 4" class="cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-amber-400">
+          <div class="text-[10px] text-slate-300 font-bold font-tech">K4</div>
+          <div id="star_g4" class="text-[11px] font-bold text-amber-300">0⭐</div>
+          <div id="badge_turn_4" class="text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold">Belum</div>
+        </div>
+        <div id="card_g5" onclick="selectGroupDirectly(5)" title="Pilih Kelompok 5" class="cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-amber-400">
+          <div class="text-[10px] text-slate-300 font-bold font-tech">K5</div>
+          <div id="star_g5" class="text-[11px] font-bold text-amber-300">0⭐</div>
+          <div id="badge_turn_5" class="text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold">Belum</div>
+        </div>
+        <div id="card_g6" onclick="selectGroupDirectly(6)" title="Pilih Kelompok 6" class="cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-amber-400">
+          <div class="text-[10px] text-slate-300 font-bold font-tech">K6</div>
+          <div id="star_g6" class="text-[11px] font-bold text-amber-300">0⭐</div>
+          <div id="badge_turn_6" class="text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold">Belum</div>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- ================= MODAL 1: RODA PUTAR SIBER ================= -->
+  <div id="spinModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border-2 border-amber-500/60 rounded-3xl max-w-md w-full p-5 shadow-2xl relative flex flex-col items-center">
+      
+      <button onclick="closeSpinModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white hover:bg-rose-600 transition flex items-center justify-center font-bold text-sm">
+        ✕
+      </button>
+
+      <div class="text-center mb-2">
+        <div class="text-[10px] uppercase tracking-widest font-black text-amber-400 font-tech flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-dharmachakra animate-spin-slow"></i> PENGUNDI GILIRAN ESTAFET 5D
+        </div>
+        <h3 class="text-lg font-black text-slate-100 font-tech">
+          Kelompok Mana yang Maju Sekarang?
+        </h3>
+        <p class="text-xs text-slate-400 mt-0.5">
+          Sistem otomatis mengacak kelompok yang <span class="text-amber-400 font-bold">belum tampil</span> agar adil!
+        </p>
+      </div>
+
+      <!-- Kanvas Roda Putar -->
+      <div class="relative my-3 flex items-center justify-center">
+        <!-- Jarum Penunjuk Atas -->
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-20 text-3xl filter drop-shadow text-amber-400">
+          ▼
+        </div>
+        <canvas id="wheelCanvas" width="270" height="270" class="rounded-full shadow-2xl border-4 border-slate-800 bg-slate-950"></canvas>
+      </div>
+
+      <!-- Tombol Putar & Panel Pemenang -->
+      <div class="w-full flex flex-col gap-2">
+        <button id="btnSpinAction" onclick="startSpinning()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs sm:text-sm tracking-wider uppercase shadow-xl transition active:scale-95 flex items-center justify-center gap-2 font-tech">
+          <i class="fa-solid fa-play"></i> PUTAR RODA GILIRAN!
+        </button>
+
+        <div id="spinResultBox" class="hidden p-3 rounded-2xl bg-amber-500/20 border border-amber-400 text-center">
+          <div class="text-[10px] uppercase font-bold text-amber-300 font-tech">Hasil Undian Giliran:</div>
+          <div id="spinResultText" class="text-lg font-black text-amber-200 font-tech">KELOMPOK 1 TERPILIH!</div>
+          <p id="spinResultSub" class="text-[11px] text-slate-300 mt-0.5">
+            Perwakilan kelompok, silakan maju ke depan layar proyektor!
+          </p>
+          <button onclick="confirmSelectedGroup()" class="mt-2.5 w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-xl shadow uppercase font-tech transition active:scale-95">
+            <i class="fa-solid fa-check-double mr-1"></i> Siap Maju & Buka Soal Misi!
+          </button>
+        </div>
+      </div>
+
+      <!-- Status Keikutsertaan -->
+      <div class="mt-3 pt-2.5 border-t border-slate-800 w-full text-center">
+        <div class="text-[10px] text-slate-400 font-tech font-bold uppercase mb-1.5">Status 6 Kelompok:</div>
+        <div class="flex justify-center gap-1.5 flex-wrap" id="modalGroupChips"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2: KARTU STRATEGI MEJA DISKUSI ================= -->
+  <div id="strategyModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border-2 border-cyan-500/60 rounded-3xl max-w-2xl w-full p-5 shadow-2xl relative max-h-[90vh] flex flex-col">
+      
+      <button onclick="closeStrategyModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-300 hover:text-white hover:bg-rose-600 transition flex items-center justify-center font-bold text-sm">
+        ✕
+      </button>
+
+      <div class="mb-3">
+        <div class="text-[10px] uppercase tracking-widest font-black text-cyan-400 font-tech">
+          📋 PANDUAN KARTU STRATEGI MEJA
+        </div>
+        <h3 class="text-lg font-black text-slate-100 font-tech">
+          Daftar 6 Studi Kasus Masukan-Proses-Luaran
+        </h3>
+        <p class="text-xs text-slate-400">
+          Gunakan kartu cetak di meja kelompok untuk berdiskusi sebelum eksekutor maju ke layar!
+        </p>
+      </div>
+
+      <!-- Tabel Kasus Scrollable -->
+      <div class="flex-1 overflow-y-auto space-y-2 pr-1 text-xs">
+        <div class="p-3 rounded-2xl bg-slate-950 border border-cyan-800/40">
+          <div class="flex justify-between items-center text-cyan-300 font-bold font-tech mb-1">
+            <span>KASUS 1 (KELOMPOK 1)</span>
+            <span class="text-[10px] bg-cyan-950 px-2 py-0.5 rounded text-cyan-400">Naskah Piket</span>
+          </div>
+          <p class="text-slate-300 text-[11px]">Sekretaris mengetik tabel tugas piket huruf lalu memeriksanya di layar kaca monitor.</p>
+          <div class="mt-1 text-[10px] text-slate-400 font-mono">Papan Ketik ➔ Google Docs ➔ Monitor</div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-950 border border-rose-800/40">
+          <div class="flex justify-between items-center text-rose-300 font-bold font-tech mb-1">
+            <span>KASUS 2 (KELOMPOK 2)</span>
+            <span class="text-[10px] bg-rose-950 px-2 py-0.5 rounded text-rose-400">Tari Multimedia</span>
+          </div>
+          <p class="text-slate-300 text-[11px]">Rani berlatih tari saman dari video internet: butuh melihat gerakan DAN mendengarkan tempo musik serentak.</p>
+          <div class="mt-1 text-[10px] text-slate-400 font-mono">Tetikus (Mouse) ➔ YouTube ➔ Layar Monitor & Pengeras Suara</div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-950 border border-amber-800/40">
+          <div class="flex justify-between items-center text-amber-300 font-bold font-tech mb-1">
+            <span>KASUS 3 (KELOMPOK 3)</span>
+            <span class="text-[10px] bg-amber-950 px-2 py-0.5 rounded text-amber-400">Selebaran Fisik</span>
+          </div>
+          <p class="text-slate-300 text-[11px]">Membagikan selebaran poster bazar sekolah langsung ke tangan orang tua dalam wujud kertas nyata.</p>
+          <div class="mt-1 text-[10px] text-slate-400 font-mono">Tetikus (Mouse) ➔ Canva / Paint ➔ Mesin Cetak (Printer)</div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-950 border border-purple-800/40">
+          <div class="flex justify-between items-center text-purple-300 font-bold font-tech mb-1">
+            <span>KASUS 4 (KELOMPOK 4)</span>
+            <span class="text-[10px] bg-purple-950 px-2 py-0.5 rounded text-purple-400">Rekaman Pidato</span>
+          </div>
+          <p class="text-slate-300 text-[11px]">Budi merekam suara vokal latihan pidato bahasa Inggris untuk mengevaluasi kejernihan lafalnya.</p>
+          <div class="mt-1 text-[10px] text-slate-400 font-mono">Mikrofon ➔ Studio Suara ➔ Pengeras Suara (Speaker)</div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-950 border border-sky-800/40">
+          <div class="flex justify-between items-center text-sky-300 font-bold font-tech mb-1">
+            <span>KASUS 5 (KELOMPOK 5)</span>
+            <span class="text-[10px] bg-sky-950 px-2 py-0.5 rounded text-sky-400">Foto Piala Lobi</span>
+          </div>
+          <p class="text-slate-300 text-[11px]">Memotret piala menggunakan sensor cahaya, membingkainya di komputer, lalu menayangkannya di layar lobi.</p>
+          <div class="mt-1 text-[10px] text-slate-400 font-mono">Kamera Digital ➔ Canva ➔ Layar Monitor</div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-950 border border-emerald-800/40">
+          <div class="flex justify-between items-center text-emerald-300 font-bold font-tech mb-1">
+            <span>KASUS 6 (KELOMPOK 6)</span>
+            <span class="text-[10px] bg-emerald-950 px-2 py-0.5 rounded text-emerald-400">Arsip Fisik Naskah</span>
+          </div>
+          <p class="text-slate-300 text-[11px]">Mengetik kalimat sambutan resmi lalu mencetaknya ke lembaran kertas fisik untuk arsip tanda tangan basah.</p>
+          <div class="mt-1 text-[10px] text-slate-400 font-mono">Papan Ketik ➔ Google Docs ➔ Mesin Cetak (Printer)</div>
+        </div>
+      </div>
+
+      <button onclick="closeStrategyModal()" class="mt-3 w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-2xl font-tech">
+        Tutup Panduan Meja
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 3: KEMENANGAN KELAS (SELURUH 6 TIM SELESAI) ================= -->
+  <div id="allCompleteModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border-2 border-emerald-500 rounded-3xl max-w-md w-full p-6 text-center shadow-2xl relative overflow-hidden">
+      
+      <canvas id="confettiCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+      
+      <div class="relative z-10">
+        <div class="text-5xl mb-2 animate-bounce">🏆</div>
+        <h3 class="text-xl font-black text-emerald-400 font-tech">
+          PABRIK DATA KOTA SIBER PULIH TOTAL!
+        </h3>
+        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+          Hebat sekali! Seluruh 6 Kelompok Teknisi Siber Kelas 5D telah menuntaskan giliran misinya dengan sempurna!
+        </p>
+        
+        <div class="my-4 p-3 bg-slate-950 rounded-2xl border border-slate-800 text-xs">
+          <div class="font-bold text-amber-300 mb-1.5 font-tech">REKAPITULASI BINTANG KELAS:</div>
+          <div id="finalScoreSummary" class="grid grid-cols-3 gap-1.5 text-slate-200 font-mono font-bold text-xs"></div>
+        </div>
+
+        <div class="flex gap-2">
+          <button onclick="closeAllCompleteModal()" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-2xl font-tech">
+            Tutup
+          </button>
+          <button onclick="startFreshRound()" class="flex-1 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black rounded-2xl font-tech transition active:scale-95">
+            Mulai Babak Baru
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- WEB AUDIO API SYNTHESIZER 2.0 (Zero External Audio Dependencies) ---
+    const SoundBox = {
+      ctx: null,
+      enabled: true,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+      },
+      tone(freq, type = 'sine', duration = 0.12, gain = 0.1) {
+        if (!this.enabled) return;
+        this.init();
+        try {
+          const osc = this.ctx.createOscillator();
+          const amp = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          amp.gain.setValueAtTime(gain, this.ctx.currentTime);
+          amp.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+          osc.connect(amp);
+          amp.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch(e) {}
+      },
+      click() {
+        this.tone(650, 'sine', 0.05, 0.08);
+      },
+      tick() {
+        this.tone(900, 'triangle', 0.03, 0.05);
+      },
+      cablePlug() {
+        this.tone(380, 'triangle', 0.08, 0.12);
+        setTimeout(() => this.tone(760, 'sine', 0.12, 0.1), 70);
+      },
+      error() {
+        this.tone(200, 'sawtooth', 0.25, 0.15);
+        setTimeout(() => this.tone(140, 'sawtooth', 0.35, 0.15), 180);
+      },
+      success() {
+        const chord = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C5 E5 G5 C6 E6
+        chord.forEach((f, i) => {
+          setTimeout(() => this.tone(f, 'triangle', 0.25, 0.12), i * 90);
+        });
+      },
+      packetPulse() {
+        this.tone(480, 'sine', 0.08, 0.06);
+        setTimeout(() => this.tone(640, 'sine', 0.08, 0.06), 80);
+      }
+    };
+
+    function toggleAudio() {
+      SoundBox.enabled = !SoundBox.enabled;
+      const btn = document.getElementById('btnAudioToggle');
+      if (SoundBox.enabled) {
+        btn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+        btn.className = "w-8 h-8 rounded-xl bg-slate-900 hover:bg-slate-700 text-cyan-400 flex items-center justify-center text-xs transition";
+        SoundBox.click();
+      } else {
+        btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+        btn.className = "w-8 h-8 rounded-xl bg-slate-900 hover:bg-slate-700 text-slate-500 flex items-center justify-center text-xs transition";
+      }
+    }
+
+    // --- DATA 6 STUDI KASUS KONTEKSTUAL (1 KASUS UNTUK SETIAP KELOMPOK) ---
+    const missions = [
+      {
+        level: 1,
+        dedicatedGroup: 1,
+        title: "Kasus 1 (Giliran Kelompok 1)",
+        subTitle: "Penyusunan Naskah & Tampilan Layar",
+        brief: "Sekretaris kelas ingin menyusun daftar piket mingguan berupa tabel teks huruf, lalu langsung memeriksa dan mengoreksi susunannya di hadapan teman-temannya di layar kaca sebelum disimpan.",
+        correctInput: "keyboard",
+        correctSoftware: "docs",
+        requiredOutputs: ["monitor"],
+        explanation: "Papan Ketik memasukkan teks ➔ Google Docs mengolah struktur kata di CPU ➔ Hasilnya diperiksa visual di Layar Monitor."
+      },
+      {
+        level: 2,
+        dedicatedGroup: 2,
+        title: "Kasus 2 (Giliran Kelompok 2)",
+        subTitle: "Eksplorasi Gerak Tari Multimedia Simultan",
+        brief: "Rani hendak berlatih tari saman dari video internet. Agar ia dapat menirukan keselarasan gerakan tubuh sekaligus mengikuti tempo tabuhan irama musik pengiring secara bersamaan, perangkat apa saja yang harus aktif serentak?",
+        correctInput: "mouse",
+        correctSoftware: "youtube",
+        requiredOutputs: ["monitor", "speaker"],
+        explanation: "Klik Tetikus memilih tayangan ➔ CPU memutar berkas video YouTube ➔ Butuh DUA luaran sekaligus: Monitor (gambar gerak) & Speaker (alunan musik)."
+      },
+      {
+        level: 3,
+        dedicatedGroup: 3,
+        title: "Kasus 3 (Giliran Kelompok 3)",
+        subTitle: "Produksi Lembaran Fisik Selebaran Bazar",
+        brief: "Panitia bazar sekolah telah selesai menyusun tata letak poster warna-warni di kanvas desain komputer. Agar selebaran tersebut dapat dibagikan langsung ke tangan para orang tua di gerbang sekolah dalam bentuk kertas nyata, alur mana yang wajib bekerja?",
+        correctInput: "mouse",
+        correctSoftware: "canva",
+        requiredOutputs: ["printer"],
+        explanation: "Tetikus menata grafis ➔ Canva memproses tata letak warna di CPU ➔ Mesin Cetak (Printer) mencetaknya ke lembaran kertas fisik."
+      },
+      {
+        level: 4,
+        dedicatedGroup: 4,
+        title: "Kasus 4 (Giliran Kelompok 4)",
+        subTitle: "Evaluasi Pelafalan & Perekaman Sinyal Vokal",
+        brief: "Budi sedang berlatih pidato bahasa inggris dengan berbicara di depan komputer. Ia ingin mendengarkan kembali kejernihan nada suaranya sendiri secara langsung tanpa perlu mencetak teks apa pun ke kertas.",
+        correctInput: "mic",
+        correctSoftware: "recorder",
+        requiredOutputs: ["speaker"],
+        explanation: "Mikrofon menangkap getaran suara ➔ Studio Suara merekam dan mengolah frekuensi vokal di CPU ➔ Pengeras Suara melantunkan suara kembali."
+      },
+      {
+        level: 5,
+        dedicatedGroup: 5,
+        title: "Kasus 5 (Giliran Kelompok 5)",
+        subTitle: "Dokumentasi Optik Piala ke Layar Lobi",
+        brief: "Dokumentator kelas baru saja memotret piala kejuaraan menggunakan sensor penangkap cahaya. Foto tersebut ingin digabungkan ke dalam bingkai ucapan selamat di komputer, lalu langsung ditayangkan bagi pengunjung di layar tampilan lobi sekolah.",
+        correctInput: "camera",
+        correctSoftware: "canva",
+        requiredOutputs: ["monitor"],
+        explanation: "Kamera Digital menangkap foto piala ➔ Canva menggabungkan foto dengan desain bingkai di CPU ➔ Layar Monitor menayangkan visualnya."
+      },
+      {
+        level: 6,
+        dedicatedGroup: 6,
+        title: "Kasus 6 (Giliran Kelompok 6)",
+        subTitle: "Arsip Fisik Naskah Resmi Bertanda Tangan",
+        brief: "Ketua kelas mengetik kalimat sambutan resmi upacara bendera menggunakan tuts abjad di pengolah dokumen. Kepala Sekolah meminta berkas dokumen fisik bertanda tangan tinta basah untuk disimpan rapi di dalam map lemari arsip.",
+        correctInput: "keyboard",
+        correctSoftware: "docs",
+        requiredOutputs: ["printer"],
+        explanation: "Mengetik dengan Papan Ketik ➔ Google Docs mengolah naskah kalimat di CPU ➔ Mesin Cetak memproduksi lembar kertas fisik untuk arsip."
+      }
+    ];
+
+    // --- STATE VARIABLES ---
+    let currentLevelIndex = 0;
+    let selectedInput = null;
+    let selectedSoftware = null;
+    let selectedOutputs = new Set();
+    let groupScores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+    let groupPlayedStatus = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
+
+    // Timer Variables
+    let timerValue = 30;
+    let timerInterval = null;
+    let isTimerRunning = false;
+
+    // Roda Putar State
+    let isSpinning = false;
+    let currentWheelAngle = 0;
+    const wheelColors = ['#06b6d4', '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#3b82f6'];
+    let selectedSpinGroup = null;
+
+    // Inisialisasi Game
+    window.addEventListener('DOMContentLoaded', () => {
+      loadMission(0);
+      updateScoreboard();
+      updateTurnStatusUI();
+      drawWheel();
+      window.addEventListener('resize', () => {
+        setTimeout(updateWires, 100);
+      });
+    });
+
+    function loadMission(index) {
+      currentLevelIndex = index;
+      const m = missions[index];
+      
+      // Update Banner UI
+      document.getElementById('levelBadge').innerText = `KASUS ${m.level} (KELOMPOK ${m.dedicatedGroup})`;
+      document.getElementById('levelSubTitle').innerText = m.subTitle;
+      document.getElementById('missionText').innerText = m.brief;
+      
+      // Set group dropdown
+      document.getElementById('groupSelect').value = m.dedicatedGroup.toString();
+
+      // Highlight Tombol Tab Kasus
+      for (let l = 1; l <= 6; l++) {
+        const btn = document.getElementById(`btnLvl${l}`);
+        if (l === m.level) {
+          btn.className = "px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-md shadow-cyan-500/20";
+        } else {
+          btn.className = "px-3 py-1.5 text-xs font-tech font-bold rounded-xl border border-slate-700 bg-slate-800 text-slate-400 hover:border-cyan-400 transition";
+        }
+      }
+
+      resetSelections();
+      setKokaMood('normal', `Kasus ${m.level} untuk Kelompok ${m.dedicatedGroup}: "${m.brief}"`);
+      resetTimer();
+      updateTurnStatusUI();
+    }
+
+    function changeLevel(lvl) {
+      SoundBox.click();
+      loadMission(lvl - 1);
+    }
+
+    function selectGroupDirectly(groupNum) {
+      SoundBox.click();
+      document.getElementById('groupSelect').value = groupNum.toString();
+      loadMission(groupNum - 1);
+    }
+
+    function resetCurrentMission() {
+      SoundBox.click();
+      resetSelections();
+      setKokaMood('normal', 'Perangkat disetel ulang. Silakan pilih kembali perangkat masukan yang tepat!');
+    }
+
+    function resetSelections() {
+      selectedInput = null;
+      selectedSoftware = null;
+      selectedOutputs.clear();
+
+      // Reset tombol masukan
+      document.querySelectorAll('.device-btn').forEach(b => {
+        b.classList.remove('glow-cyan-box');
+        b.classList.add('border-slate-800', 'bg-slate-900/90');
+      });
+
+      // Reset tombol software
+      document.querySelectorAll('.soft-btn').forEach(b => {
+        b.classList.remove('glow-cyan-box');
+        b.classList.add('border-slate-800', 'bg-slate-900/90');
+      });
+
+      // Reset tombol luaran
+      document.querySelectorAll('.out-btn').forEach(b => {
+        b.classList.remove('glow-green-box');
+        b.classList.add('border-slate-800', 'bg-slate-900/90');
+      });
+
+      // Reset tampilan perangkat luaran fisik
+      const scr = document.getElementById('screen_monitor');
+      scr.innerHTML = `<span>[Layar Kaca Gelap]</span>`;
+      scr.className = "w-full h-12 bg-slate-950 rounded-xl border border-slate-800/90 flex items-center justify-center p-1 text-[10px] text-slate-500 font-mono text-center overflow-hidden transition-all duration-300";
+      document.getElementById('badge_monitor').innerText = "STANDBY";
+      document.getElementById('badge_monitor').className = "text-[9px] px-2 py-0.2 rounded-md bg-slate-950 text-slate-500 font-mono font-bold border border-slate-800";
+
+      const prt = document.getElementById('paper_printer');
+      prt.innerHTML = `<span>[Baki Kertas Standby]</span>`;
+      prt.className = "w-full h-11 bg-slate-950 rounded-xl border border-slate-800/90 flex items-center justify-center p-1 text-[10px] text-slate-500 font-mono text-center overflow-hidden relative transition-all duration-300";
+      document.getElementById('badge_printer').innerText = "STANDBY";
+      document.getElementById('badge_printer').className = "text-[9px] px-2 py-0.2 rounded-md bg-slate-950 text-slate-500 font-mono font-bold border border-slate-800";
+
+      const spk = document.getElementById('sound_speaker');
+      spk.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-800"></span><span class="w-2 h-3.5 rounded-full bg-slate-800"></span><span class="w-2 h-2 rounded-full bg-slate-800"></span>`;
+      spk.className = "w-full h-8 bg-slate-950 rounded-xl border border-slate-800/90 flex items-center justify-center gap-1.5 transition-all duration-300";
+      document.getElementById('badge_speaker').innerText = "STANDBY";
+      document.getElementById('badge_speaker').className = "text-[9px] px-2 py-0.2 rounded-md bg-slate-950 text-slate-500 font-mono font-bold border border-slate-800";
+
+      // Reset CPU Box
+      const cpu = document.getElementById('cpuBox');
+      cpu.className = "relative mx-auto max-w-lg bg-gradient-to-b from-slate-900 to-slate-950 border-4 border-slate-800 rounded-3xl p-4 shadow-2xl transition duration-500 text-center overflow-hidden";
+      document.getElementById('cpuStatusTag').innerText = "MENUNGGU MASUKAN";
+      document.getElementById('cpuStatusTag').className = "text-[10px] font-tech uppercase bg-slate-950 px-3 py-0.5 rounded-full text-slate-400 border border-slate-800 font-bold";
+      
+      document.getElementById('pin1').className = "w-2.5 h-2.5 rounded-full bg-slate-700 transition";
+      document.getElementById('pin2').className = "w-2.5 h-2.5 rounded-full bg-slate-700 transition";
+      document.getElementById('pin3').className = "w-2.5 h-2.5 rounded-full bg-slate-700 transition";
+
+      document.getElementById('instructionHint').innerHTML = `💡 <span class="font-bold text-cyan-400">Langkah 1:</span> Diskusikan bersama tim meja, pilih perangkat masukan di sisi kiri!`;
+      
+      hidePacketOrbs();
+      updateWires();
+    }
+
+    function selectInputDevice(devId) {
+      SoundBox.cablePlug();
+      selectedInput = devId;
+
+      document.querySelectorAll('.device-btn').forEach(b => {
+        b.classList.remove('glow-cyan-box');
+        b.classList.add('border-slate-800', 'bg-slate-900/90');
+      });
+
+      const activeBtn = document.getElementById(`dev_${devId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-slate-800');
+        activeBtn.classList.add('glow-cyan-box');
+      }
+
+      document.getElementById('pin1').className = "w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping";
+      document.getElementById('cpuStatusTag').innerText = "SINYAL MASUKAN DITERIMA";
+      document.getElementById('cpuStatusTag').className = "text-[10px] font-tech uppercase bg-cyan-950 px-3 py-0.5 rounded-full text-cyan-300 border border-cyan-700 font-bold";
+
+      document.getElementById('instructionHint').innerHTML = `💡 <span class="font-bold text-indigo-400">Langkah 2:</span> Sinyal masukan terhubung! Pilih perangkat lunak pemroses di CPU!`;
+
+      setKokaMood('normal', "Perangkat masukan terhubung ke CPU! Aplikasi mana yang bertugas memproses data jenis ini?");
+      updateWires();
+    }
+
+    function selectSoftware(softId) {
+      if (!selectedInput) {
+        SoundBox.error();
+        setKokaMood('confused', "Bip-bip! Jangan melompati urutan. Pilih Perangkat Masukan terlebih dahulu sebelum memilih software di CPU!");
+        return;
+      }
+
+      SoundBox.cablePlug();
+      selectedSoftware = softId;
+
+      document.querySelectorAll('.soft-btn').forEach(b => {
+        b.classList.remove('glow-cyan-box');
+        b.classList.add('border-slate-800', 'bg-slate-900/90');
+      });
+
+      const activeBtn = document.getElementById(`app_${softId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-slate-800');
+        activeBtn.classList.add('glow-cyan-box');
+      }
+
+      document.getElementById('pin2').className = "w-2.5 h-2.5 rounded-full bg-indigo-400 animate-pulse";
+      document.getElementById('cpuStatusTag').innerText = "SOFTWARE DIAKTIFKAN";
+      document.getElementById('cpuStatusTag').className = "text-[10px] font-tech uppercase bg-indigo-950 px-3 py-0.5 rounded-full text-indigo-300 border border-indigo-700 font-bold";
+
+      document.getElementById('instructionHint').innerHTML = `💡 <span class="font-bold text-emerald-400">Langkah 3:</span> Program aktif! Sekarang tentukan Perangkat Luaran di sisi kanan!`;
+
+      setKokaMood('normal', "Program pengolah di CPU siap! Ke perangkat luaran mana hasil ini harus dialirkan?");
+      updateWires();
+    }
+
+    function selectOutputDevice(outId) {
+      if (!selectedInput || !selectedSoftware) {
+        SoundBox.error();
+        setKokaMood('confused', "Bip-bip! Alur harus runtut: Masukan ➔ CPU & Perangkat Lunak ➔ barulah ke Luaran!");
+        return;
+      }
+
+      SoundBox.cablePlug();
+
+      if (selectedOutputs.has(outId)) {
+        selectedOutputs.delete(outId);
+        const btn = document.getElementById(`out_${outId}`);
+        btn.classList.remove('glow-green-box');
+        btn.classList.add('border-slate-800');
+      } else {
+        selectedOutputs.add(outId);
+        const btn = document.getElementById(`out_${outId}`);
+        btn.classList.remove('border-slate-800');
+        btn.classList.add('glow-green-box');
+      }
+
+      document.getElementById('pin3').className = "w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping";
+      document.getElementById('instructionHint').innerHTML = `💡 <span class="font-bold text-emerald-300">Siap Dieksekusi!</span> Tekan tombol hijau 'Nyalakan Alur Data'!`;
+
+      updateWires();
+    }
+
+    function triggerBypassError() {
+      SoundBox.error();
+      const cpu = document.getElementById('cpuBox');
+      cpu.classList.add('glow-rose-box', 'animate-pulse');
+      setTimeout(() => cpu.classList.remove('glow-rose-box', 'animate-pulse'), 1200);
+
+      setKokaMood('confused', "Bip-bip! Tanpa CPU dan aplikasi, data tidak dapat diolah! Komputer adalah mesin pasif yang butuh pemrosesan logika.");
+    }
+
+    function executeAction() {
+      const mission = missions[currentLevelIndex];
+
+      // 1. Validasi Kelengkapan Alur Tiga Zona
+      if (!selectedInput || !selectedSoftware || selectedOutputs.size === 0) {
+        SoundBox.error();
+        setKokaMood('confused', "Bip-bip! Alur belum lengkap. Kamu wajib menghubungkan ketiga zona: Masukan ➔ CPU & Aplikasi ➔ Luaran!");
+        return;
+      }
+
+      // 2. Validasi Hardware Masukan
+      const isInputCorrect = (selectedInput === mission.correctInput);
+
+      // 3. Validasi Software di CPU
+      const isSoftwareCorrect = (selectedSoftware === mission.correctSoftware);
+
+      // 4. Validasi Hardware Luaran
+      const requiredArr = mission.requiredOutputs;
+      const hasAllRequired = requiredArr.every(o => selectedOutputs.has(o));
+      const hasNoExtra = selectedOutputs.size === requiredArr.length;
+      const isOutputCorrect = hasAllRequired && hasNoExtra;
+
+      // Evaluasi Umpan Balik Khusus Kasus
+      if (!isInputCorrect) {
+        SoundBox.error();
+        setKokaMood('confused', `Bip-bip! Perangkat masukan '${selectedInput.toUpperCase()}' kurang pas dengan konteks instruksi kasus ini. Perhatikan apakah butuh ketikan, klik, suara vokal, atau foto!`);
+        return;
+      }
+
+      if (!isSoftwareCorrect) {
+        SoundBox.error();
+        setKokaMood('confused', `Bip-bip! Aplikasi di dalam CPU belum cocok. Komputer butuh software khusus yang dirancang untuk jenis berkas tersebut!`);
+        return;
+      }
+
+      if (!isOutputCorrect) {
+        SoundBox.error();
+        if (mission.level === 2 && selectedOutputs.size === 1) {
+          setKokaMood('confused', "Bip-bip! Rani perlu menonton gerakan DAN mendengar irama musiknya. Video YouTube membutuhkan DUA perangkat luaran sekaligus!");
+        } else if (mission.requiredOutputs.includes('printer') && !selectedOutputs.has('printer')) {
+          setKokaMood('confused', "Bip-bip! Perhatikan kasusnya: diminta 'kertas fisik di tangan', bukan sekadar melihat tampilan di layar kaca!");
+        } else {
+          setKokaMood('confused', "Bip-bip! Perangkat luaran yang dipilih belum menghasilkan luaran yang diinginkan kasus ini.");
+        }
+        return;
+      }
+
+      // BERHASIL: Jalankan simulasi paket data cahaya mengalir sebelum hardware bereaksi!
+      stopTimer();
+      animateDataPacketsFlow(() => {
+        SoundBox.success();
+        animateOutputsSuccess(mission.level);
+
+        const activeGroup = parseInt(document.getElementById('groupSelect').value);
+        const earnedStars = (timerValue >= 10) ? 2 : 1;
+        groupScores[activeGroup] += earnedStars;
+        groupPlayedStatus[activeGroup] = true;
+
+        updateScoreboard();
+        updateTurnStatusUI();
+
+        const playedCount = Object.values(groupPlayedStatus).filter(Boolean).length;
+        
+        if (playedCount === 6) {
+          setKokaMood('happy', `SEMPURNA! Kelompok ${activeGroup} berhasil (+${earnedStars}⭐)! SEMUA 6 KELOMPOK telah tuntas maju menyelesaikan misi Pabrik Data!`);
+          setTimeout(showAllCompleteModal, 1200);
+        } else {
+          setKokaMood('happy', `HEBAT! Teknisi Kelompok ${activeGroup} Sukses! (${mission.explanation}) Memperoleh +${earnedStars} Bintang! [${playedCount}/6 Kelompok Selesai]`);
+        }
+      });
+    }
+
+    function animateDataPacketsFlow(onComplete) {
+      SoundBox.packetPulse();
+      const pIn = document.getElementById('packetIn');
+      const pOut1 = document.getElementById('packetOut1');
+      const pOut2 = document.getElementById('packetOut2');
+      const wIn = document.getElementById('wireIn');
+      const wOut1 = document.getElementById('wireOut1');
+      const wOut2 = document.getElementById('wireOut2');
+
+      const pathInLen = wIn.getTotalLength();
+      if (!pathInLen) {
+        onComplete();
+        return;
+      }
+
+      pIn.setAttribute('opacity', '1');
+      let start = performance.now();
+      const duration = 600; // ms
+
+      function stepIn(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const pt = wIn.getPointAtLength(progress * pathInLen);
+        pIn.setAttribute('cx', pt.x);
+        pIn.setAttribute('cy', pt.y);
+
+        if (progress < 1) {
+          requestAnimationFrame(stepIn);
+        } else {
+          pIn.setAttribute('opacity', '0');
+          // Cahaya masuk ke CPU
+          document.getElementById('cpuBox').classList.add('glow-cyan-box');
+          setTimeout(() => {
+            document.getElementById('cpuBox').classList.remove('glow-cyan-box');
+            // Alirkan ke kabel luaran
+            animatePacketsOut(onComplete);
+          }, 200);
+        }
+      }
+      requestAnimationFrame(stepIn);
+    }
+
+    function animatePacketsOut(onComplete) {
+      const pOut1 = document.getElementById('packetOut1');
+      const pOut2 = document.getElementById('packetOut2');
+      const wOut1 = document.getElementById('wireOut1');
+      const wOut2 = document.getElementById('wireOut2');
+
+      const len1 = wOut1.getTotalLength();
+      const len2 = wOut2.getTotalLength();
+
+      if (!len1) {
+        onComplete();
+        return;
+      }
+
+      pOut1.setAttribute('opacity', '1');
+      if (len2) pOut2.setAttribute('opacity', '1');
+
+      let start = performance.now();
+      const duration = 600;
+
+      function stepOut(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const pt1 = wOut1.getPointAtLength(progress * len1);
+        pOut1.setAttribute('cx', pt1.x);
+        pOut1.setAttribute('cy', pt1.y);
+
+        if (len2) {
+          const pt2 = wOut2.getPointAtLength(progress * len2);
+          pOut2.setAttribute('cx', pt2.x);
+          pOut2.setAttribute('cy', pt2.y);
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(stepOut);
+        } else {
+          pOut1.setAttribute('opacity', '0');
+          pOut2.setAttribute('opacity', '0');
+          onComplete();
+        }
+      }
+      requestAnimationFrame(stepOut);
+    }
+
+    function hidePacketOrbs() {
+      document.getElementById('packetIn').setAttribute('opacity', '0');
+      document.getElementById('packetOut1').setAttribute('opacity', '0');
+      document.getElementById('packetOut2').setAttribute('opacity', '0');
+    }
+
+    function animateOutputsSuccess(level) {
+      const cpu = document.getElementById('cpuBox');
+      if (cpu) {
+        cpu.classList.add('glow-green-box');
+      }
+
+      if (level === 1 || level === 5) {
+        const scr = document.getElementById('screen_monitor');
+        const badge = document.getElementById('badge_monitor');
+        if (scr && badge) {
+          badge.innerText = "AKTIF MENAMPILKAN";
+          badge.className = "text-[9px] px-2 py-0.2 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-500 font-mono font-bold animate-pulse";
+          scr.className = "w-full h-12 bg-slate-900 rounded-xl border-2 border-emerald-400 flex items-center justify-center p-1 text-[11px] text-emerald-300 font-bold text-center glow-green-box font-tech";
+          scr.innerHTML = (level === 1) 
+            ? `<div class="flex items-center gap-1.5"><i class="fa-solid fa-file-circle-check text-emerald-400"></i><span>Tabel Piket Terbuka!</span></div>` 
+            : `<div class="flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-400"></i><span>Foto Piala Terpajang di Lobi!</span></div>`;
+        }
+      } 
+      
+      if (level === 2) {
+        const scr = document.getElementById('screen_monitor');
+        const badgeMon = document.getElementById('badge_monitor');
+        if (scr && badgeMon) {
+          badgeMon.innerText = "MEMUTAR VIDEO";
+          badgeMon.className = "text-[9px] px-2 py-0.2 rounded-md bg-rose-950 text-rose-300 border border-rose-500 font-mono font-bold animate-pulse";
+          scr.className = "w-full h-12 bg-slate-900 rounded-xl border-2 border-rose-500 flex items-center justify-center p-1 text-[11px] text-rose-300 font-bold text-center glow-rose-box font-tech";
+          scr.innerHTML = `<div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-play text-rose-400 animate-pulse"></i><span>Tari Saman Berputar!</span></div>`;
+        }
+
+        const spk = document.getElementById('sound_speaker');
+        const badgeSpk = document.getElementById('badge_speaker');
+        if (spk && badgeSpk) {
+          badgeSpk.innerText = "MUSIK AKTIF";
+          badgeSpk.className = "text-[9px] px-2 py-0.2 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-500 font-mono font-bold animate-pulse";
+          spk.className = "w-full h-8 bg-slate-900 rounded-xl border border-emerald-500 flex items-center justify-center gap-1.5 speaker-beating";
+          spk.innerHTML = `
+            <span class="w-1.5 h-4 bg-emerald-400 rounded-full animate-bounce"></span>
+            <span class="w-1.5 h-6 bg-cyan-400 rounded-full animate-pulse"></span>
+            <span class="w-1.5 h-3 bg-emerald-400 rounded-full animate-bounce"></span>
+            <span class="w-1.5 h-5 bg-cyan-400 rounded-full animate-pulse"></span>
+          `;
+        }
+      }
+
+      if (level === 3 || level === 6) {
+        const prt = document.getElementById('paper_printer');
+        const badgePrt = document.getElementById('badge_printer');
+        if (prt && badgePrt) {
+          badgePrt.innerText = "KERTAS TERCETAK";
+          badgePrt.className = "text-[9px] px-2 py-0.2 rounded-md bg-amber-950 text-amber-300 border border-amber-500 font-mono font-bold animate-pulse";
+          prt.className = "w-full h-11 bg-slate-100 rounded-xl border-2 border-amber-400 flex items-center justify-center p-1 text-[11px] text-slate-900 font-bold text-center glow-amber-box font-tech paper-slide-down";
+          prt.innerHTML = (level === 3) 
+            ? `<div class="flex items-center gap-1.5"><i class="fa-solid fa-receipt text-amber-600"></i><span>Selebaran Bazar Tercetak!</span></div>` 
+            : `<div class="flex items-center gap-1.5"><i class="fa-solid fa-stamp text-amber-600"></i><span>Naskah Fisik Tanda Tangan Siap!</span></div>`;
+        }
+      }
+
+      if (level === 4) {
+        const spk = document.getElementById('sound_speaker');
+        const badgeSpk = document.getElementById('badge_speaker');
+        if (spk && badgeSpk) {
+          badgeSpk.innerText = "VOKAL BERSIH";
+          badgeSpk.className = "text-[9px] px-2 py-0.2 rounded-md bg-purple-950 text-purple-300 border border-purple-500 font-mono font-bold animate-pulse";
+          spk.className = "w-full h-8 bg-slate-900 rounded-xl border border-purple-500 flex items-center justify-center gap-1.5 speaker-beating";
+          spk.innerHTML = `
+            <span class="w-1.5 h-3 bg-purple-400 rounded-full animate-pulse"></span>
+            <span class="w-1.5 h-6 bg-purple-300 rounded-full animate-bounce"></span>
+            <span class="w-1.5 h-4 bg-purple-400 rounded-full animate-pulse"></span>
+            <span class="w-1.5 h-5 bg-purple-300 rounded-full animate-bounce"></span>
+          `;
+        }
+      }
+    }
+
+    function setKokaMood(mood, text) {
+      const speech = document.getElementById('kokaSpeech');
+      const moodBadge = document.getElementById('kokaMood');
+      const mouth = document.getElementById('kokaMouth');
+      const eyesL = document.getElementById('kokaEyeLeft');
+      const eyesR = document.getElementById('kokaEyeRight');
+      const antenna = document.getElementById('kokaAntennaLight');
+
+      speech.innerText = `"${text}"`;
+
+      if (mood === 'happy') {
+        moodBadge.innerText = "Hebat & Bangga! 🌟";
+        moodBadge.className = "text-[10px] bg-amber-950 text-amber-300 border border-amber-600 px-2 py-0.2 rounded-full font-bold";
+        mouth.setAttribute('d', 'M 35 48 Q 50 68 65 48');
+        eyesL.setAttribute('fill', '#f59e0b');
+        eyesR.setAttribute('fill', '#f59e0b');
+        antenna.setAttribute('fill', '#10b981');
+      } else if (mood === 'confused') {
+        moodBadge.innerText = "Perlu Ditinjau! ⚠️";
+        moodBadge.className = "text-[10px] bg-rose-950 text-rose-300 border border-rose-600 px-2 py-0.2 rounded-full font-bold";
+        mouth.setAttribute('d', 'M 38 58 Q 50 48 62 58');
+        eyesL.setAttribute('fill', '#ef4444');
+        eyesR.setAttribute('fill', '#ef4444');
+        antenna.setAttribute('fill', '#ef4444');
+      } else {
+        moodBadge.innerText = "Misi Aktif 🤖";
+        moodBadge.className = "text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.2 rounded-full font-bold";
+        mouth.setAttribute('d', 'M 38 54 Q 50 62 62 54');
+        eyesL.setAttribute('fill', '#38bdf8');
+        eyesR.setAttribute('fill', '#38bdf8');
+        antenna.setAttribute('fill', '#f59e0b');
+      }
+    }
+
+    function toggleTimer() {
+      SoundBox.click();
+      if (isTimerRunning) {
+        stopTimer();
+      } else {
+        startTimer();
+      }
+    }
+
+    function startTimer() {
+      if (timerValue <= 0) timerValue = 30;
+      isTimerRunning = true;
+      document.getElementById('btnToggleTimer').innerText = "Jeda";
+      document.getElementById('btnToggleTimer').className = "bg-amber-600 hover:bg-amber-500 text-xs px-2.5 py-1 rounded-xl font-bold transition shadow";
+      
+      timerInterval = setInterval(() => {
+        timerValue--;
+        document.getElementById('timerDisplay').innerText = `${timerValue}s`;
+
+        if (timerValue <= 5 && timerValue > 0) {
+          SoundBox.tone(350, 'sine', 0.05, 0.08);
+        }
+
+        if (timerValue <= 0) {
+          stopTimer();
+          SoundBox.error();
+          setKokaMood('confused', "Waktu estafet 30 detik habis! Diskusikan kembali di meja strategi, giliran dapat dialihkan ke kelompok selanjutnya.");
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      isTimerRunning = false;
+      clearInterval(timerInterval);
+      document.getElementById('btnToggleTimer').innerText = "Lanjut";
+      document.getElementById('btnToggleTimer').className = "bg-cyan-600 hover:bg-cyan-500 text-xs px-2.5 py-1 rounded-xl font-bold transition shadow";
+    }
+
+    function resetTimer() {
+      stopTimer();
+      timerValue = 30;
+      document.getElementById('timerDisplay').innerText = "30s";
+      document.getElementById('btnToggleTimer').innerText = "Mulai";
+    }
+
+    function updateScoreboard() {
+      const activeGroup = document.getElementById('groupSelect').value;
+      document.getElementById('scoreDisplay').innerText = groupScores[activeGroup];
+
+      for (let g = 1; g <= 6; g++) {
+        const el = document.getElementById(`star_g${g}`);
+        if (el) el.innerText = `${groupScores[g]}⭐`;
+      }
+    }
+
+    function updateTurnStatusUI() {
+      const activeGroup = parseInt(document.getElementById('groupSelect').value);
+      let countPlayed = 0;
+
+      for (let g = 1; g <= 6; g++) {
+        const card = document.getElementById(`card_g${g}`);
+        const badge = document.getElementById(`badge_turn_${g}`);
+        const hasPlayed = groupPlayedStatus[g];
+
+        if (hasPlayed) countPlayed++;
+
+        if (badge) {
+          if (hasPlayed) {
+            badge.innerText = "Selesai ✓";
+            badge.className = "text-[8px] rounded px-1 py-0.2 bg-emerald-950 text-emerald-300 mt-1 font-bold border border-emerald-800";
+          } else {
+            badge.innerText = "Belum ⏳";
+            badge.className = "text-[8px] rounded px-1 py-0.2 bg-slate-900 text-slate-500 mt-1 font-bold";
+          }
+        }
+
+        if (card) {
+          if (g === activeGroup) {
+            card.className = "cursor-pointer bg-slate-900 p-1.5 rounded-xl border-2 border-amber-400 shadow-lg shadow-amber-500/20";
+          } else {
+            card.className = "cursor-pointer bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 transition hover:border-slate-600";
+          }
+        }
+      }
+
+      const progressBadge = document.getElementById('roundProgressBadge');
+      if (progressBadge) {
+        progressBadge.innerText = `${countPlayed}/6 Maju`;
+        if (countPlayed === 6) {
+          progressBadge.className = "text-[9px] bg-emerald-950 text-emerald-300 border border-emerald-500 px-2 py-0.5 rounded-md font-mono font-bold animate-pulse";
+        } else {
+          progressBadge.className = "text-[9px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-md font-mono font-bold";
+        }
+      }
+
+      const remainingCount = 6 - countPlayed;
+      const spinBadge = document.getElementById('spinBadgeRemaining');
+      if (spinBadge) {
+        spinBadge.innerText = `${remainingCount} Sisa`;
+      }
+
+      renderModalChips();
+    }
+
+    function resetRoundTurns() {
+      SoundBox.click();
+      for (let g = 1; g <= 6; g++) {
+        groupPlayedStatus[g] = false;
+      }
+      updateTurnStatusUI();
+      drawWheel();
+      setKokaMood('normal', "Giliran estafet di-reset! Semua kelompok kembali siap diundi untuk maju ke depan.");
+    }
+
+    document.getElementById('groupSelect').addEventListener('change', () => {
+      SoundBox.click();
+      const g = parseInt(document.getElementById('groupSelect').value);
+      loadMission(g - 1);
+    });
+
+    function openSpinModal() {
+      SoundBox.click();
+      document.getElementById('spinModal').classList.remove('hidden');
+      document.getElementById('spinResultBox').classList.add('hidden');
+      document.getElementById('btnSpinAction').disabled = false;
+      document.getElementById('btnSpinAction').classList.remove('opacity-50');
+      drawWheel();
+      renderModalChips();
+    }
+
+    function closeSpinModal() {
+      SoundBox.click();
+      document.getElementById('spinModal').classList.add('hidden');
+    }
+
+    function renderModalChips() {
+      const container = document.getElementById('modalGroupChips');
+      if (!container) return;
+      container.innerHTML = '';
+
+      for (let g = 1; g <= 6; g++) {
+        const isDone = groupPlayedStatus[g];
+        const chip = document.createElement('span');
+        chip.className = `text-[10px] px-2.5 py-0.5 rounded-full font-bold border font-tech ${isDone ? 'bg-emerald-950 text-emerald-300 border-emerald-700 line-through opacity-50' : 'bg-slate-900 text-amber-300 border-amber-500/50'}`;
+        chip.innerText = `K${g}: ${isDone ? 'Sudah ✓' : 'Belum ⏳'}`;
+        container.appendChild(chip);
+      }
+    }
+
+    function drawWheel() {
+      const canvas = document.getElementById('wheelCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = width / 2 - 10;
+      const sliceAngle = (2 * Math.PI) / 6;
+
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < 6; i++) {
+        const groupNum = i + 1;
+        const start = currentWheelAngle + i * sliceAngle;
+        const end = start + sliceAngle;
+        const hasPlayed = groupPlayedStatus[groupNum];
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, start, end);
+        ctx.closePath();
+
+        ctx.fillStyle = hasPlayed ? '#0f172a' : wheelColors[i];
+        ctx.fill();
+
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#050814';
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(start + sliceAngle / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = hasPlayed ? '#475569' : '#ffffff';
+        ctx.font = 'bold 13px Chakra Petch, monospace';
+        const label = `KELOMPOK ${groupNum} ${hasPlayed ? '✓' : '⚡'}`;
+        ctx.fillText(label, radius - 16, 5);
+        ctx.restore();
+      }
+
+      // Poros Lingkaran Roda
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 24, 0, 2 * Math.PI);
+      ctx.fillStyle = '#050814';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#f59e0b';
+      ctx.stroke();
+
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 11px Chakra Petch, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('KOKA', centerX, centerY);
+    }
+
+    function startSpinning() {
+      if (isSpinning) return;
+      isSpinning = true;
+
+      const spinBtn = document.getElementById('btnSpinAction');
+      spinBtn.disabled = true;
+      spinBtn.classList.add('opacity-50');
+      document.getElementById('spinResultBox').classList.add('hidden');
+
+      // Ambil kelompok yang belum maju
+      let unplayedGroups = [];
+      for (let g = 1; g <= 6; g++) {
+        if (!groupPlayedStatus[g]) unplayedGroups.push(g);
+      }
+
+      if (unplayedGroups.length === 0) {
+        unplayedGroups = [1, 2, 3, 4, 5, 6];
+      }
+
+      const chosenGroup = unplayedGroups[Math.floor(Math.random() * unplayedGroups.length)];
+      selectedSpinGroup = chosenGroup;
+
+      const sliceSize = (2 * Math.PI) / 6;
+      const sliceIndex = chosenGroup - 1;
+      const targetSliceCenter = (sliceIndex + 0.5) * sliceSize;
+      const topPointerAngle = (3 * Math.PI) / 2;
+      
+      let baseFinalAngle = topPointerAngle - targetSliceCenter;
+      const extraSpins = (Math.floor(Math.random() * 3) + 6) * (2 * Math.PI);
+      const totalDelta = extraSpins + (baseFinalAngle - (currentWheelAngle % (2 * Math.PI)));
+
+      const startAngle = currentWheelAngle;
+      const duration = 3400; // ms
+      const startTime = performance.now();
+      let lastTickAngle = currentWheelAngle;
+
+      function animateSpin(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3.5); // Deselerasi halus
+        currentWheelAngle = startAngle + totalDelta * ease;
+
+        if (Math.abs(currentWheelAngle - lastTickAngle) >= sliceSize) {
+          SoundBox.tick();
+          lastTickAngle = currentWheelAngle;
+        }
+
+        drawWheel();
+
+        if (progress < 1) {
+          requestAnimationFrame(animateSpin);
+        } else {
+          isSpinning = false;
+          SoundBox.success();
+          showSpinResult(chosenGroup);
+        }
+      }
+
+      requestAnimationFrame(animateSpin);
+    }
+
+    function showSpinResult(groupNum) {
+      document.getElementById('spinResultBox').classList.remove('hidden');
+      document.getElementById('spinResultText').innerText = `🎉 KELOMPOK ${groupNum} TERPILIH!`;
+      document.getElementById('spinResultSub').innerText = `Misi Tantangan Kasus ${groupNum} siap dieksekusi oleh tim!`;
+      document.getElementById('btnSpinAction').disabled = false;
+      document.getElementById('btnSpinAction').classList.remove('opacity-50');
+    }
+
+    function confirmSelectedGroup() {
+      if (!selectedSpinGroup) return;
+      loadMission(selectedSpinGroup - 1);
+      closeSpinModal();
+
+      setKokaMood('happy', `Kelompok ${selectedSpinGroup} maju ke layar! Waktu estafet 30 detik dimulai sekarang!`);
+      resetTimer();
+      startTimer();
+    }
+
+    function openStrategyModal() {
+      SoundBox.click();
+      document.getElementById('strategyModal').classList.remove('hidden');
+    }
+
+    function closeStrategyModal() {
+      SoundBox.click();
+      document.getElementById('strategyModal').classList.add('hidden');
+    }
+
+    function showAllCompleteModal() {
+      const modal = document.getElementById('allCompleteModal');
+      const summary = document.getElementById('finalScoreSummary');
+      if (summary) {
+        summary.innerHTML = Object.entries(groupScores).map(([g, s]) => `
+          <div class="p-2 bg-slate-900 rounded-xl border border-slate-800">
+            <span class="text-slate-400">Tim ${g}:</span> 
+            <span class="text-amber-400 font-bold ml-1">${s}⭐</span>
+          </div>
+        `).join('');
+      }
+      modal.classList.remove('hidden');
+      startConfetti();
+    }
+
+    function closeAllCompleteModal() {
+      document.getElementById('allCompleteModal').classList.add('hidden');
+    }
+
+    function startFreshRound() {
+      closeAllCompleteModal();
+      resetRoundTurns();
+      loadMission(0);
+    }
+
+    function toggleFullscreen() {
+      SoundBox.click();
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // --- KABEL SVG DENGAN POSISI DINAMIS ---
+    function updateWires() {
+      const svg = document.getElementById('wireCanvas');
+      if (!svg) return;
+      const rectSvg = svg.getBoundingClientRect();
+
+      const getCenter = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return {
+          x: r.left + r.width / 2 - rectSvg.left,
+          y: r.top + r.height / 2 - rectSvg.top
+        };
+      };
+
+      const cpuPos = getCenter('cpuBox');
+      const wireIn = document.getElementById('wireIn');
+      const wireOut1 = document.getElementById('wireOut1');
+      const wireOut2 = document.getElementById('wireOut2');
+
+      // Kabel Masukan -> CPU
+      if (selectedInput && cpuPos) {
+        const inPos = getCenter(`dev_${selectedInput}`);
+        if (inPos) {
+          const d = `M ${inPos.x} ${inPos.y} C ${(inPos.x + cpuPos.x) / 2} ${inPos.y}, ${(inPos.x + cpuPos.x) / 2} ${cpuPos.y}, ${cpuPos.x} ${cpuPos.y}`;
+          wireIn.setAttribute('d', d);
+          wireIn.setAttribute('stroke', 'url(#cyanGrad)');
+          wireIn.classList.add('wire-active', 'wire-glow');
+        }
+      } else {
+        wireIn.setAttribute('d', '');
+        wireIn.classList.remove('wire-active', 'wire-glow');
+      }
+
+      // Kabel CPU -> Luaran 1
+      const outArray = Array.from(selectedOutputs);
+      if (outArray.length > 0 && cpuPos) {
+        const outPos1 = getCenter(`out_${outArray[0]}`);
+        if (outPos1) {
+          const d1 = `M ${cpuPos.x} ${cpuPos.y} C ${(cpuPos.x + outPos1.x) / 2} ${cpuPos.y}, ${(cpuPos.x + outPos1.x) / 2} ${outPos1.y}, ${outPos1.x} ${outPos1.y}`;
+          wireOut1.setAttribute('d', d1);
+          wireOut1.setAttribute('stroke', 'url(#greenGrad)');
+          wireOut1.classList.add('wire-active', 'wire-glow');
+        }
+      } else {
+        wireOut1.setAttribute('d', '');
+        wireOut1.classList.remove('wire-active', 'wire-glow');
+      }
+
+      // Kabel CPU -> Luaran 2
+      if (outArray.length > 1 && cpuPos) {
+        const outPos2 = getCenter(`out_${outArray[1]}`);
+        if (outPos2) {
+          const d2 = `M ${cpuPos.x} ${cpuPos.y} C ${(cpuPos.x + outPos2.x) / 2} ${cpuPos.y}, ${(cpuPos.x + outPos2.x) / 2} ${outPos2.y}, ${outPos2.x} ${outPos2.y}`;
+          wireOut2.setAttribute('d', d2);
+          wireOut2.setAttribute('stroke', 'url(#greenGrad)');
+          wireOut2.classList.add('wire-active', 'wire-glow');
+        }
+      } else {
+        wireOut2.setAttribute('d', '');
+        wireOut2.classList.remove('wire-active', 'wire-glow');
+      }
+    }
+
+    // --- PARTIKEL CONFETTI MANDIRI ---
+    function startConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+
+      const particles = [];
+      const colors = ['#06b6d4', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
+
+      for (let i = 0; i < 60; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          size: Math.random() * 6 + 4,
+          speed: Math.random() * 3 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          angle: Math.random() * 360,
+          spin: Math.random() * 4 - 2
+        });
+      }
+
+      let animId;
+      let frames = 0;
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.y += p.speed;
+          p.angle += p.spin;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.angle * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+
+          if (p.y > canvas.height) {
+            p.y = -10;
+            p.x = Math.random() * canvas.width;
+          }
+        });
+
+        frames++;
+        if (frames < 250) {
+          animId = requestAnimationFrame(draw);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      draw();
+    }
+  </script>
+</body>
+</html>
